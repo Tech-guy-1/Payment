@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Find Me a Property — NyumbakuMalawi</title>
+<meta name="description" content="Pay for our Find Me a Property service. Our team will search on your behalf."/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1a3a6b;
+    --green:  #2ecc71;
+    --white:  #ffffff;
+    --ink:    #1a1a1a;
+    --muted:  #6b7280;
+    --light:  #f4f7fb;
+    --border: #e5e9f0;
+    --red:    #e63327;
+    --radius: 14px;
+    --shadow: 0 4px 24px rgba(26,58,107,0.10);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--light);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── LANDING PAGE ── */
+  #landingPage {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .lp-header {
+    background: var(--navy);
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lp-logo-placeholder {
+    width: 160px;
+    height: 44px;
+    border: 2px dashed rgba(255,255,255,0.35);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-logo-placeholder img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: none;
+  }
+
+  .lp-hero {
+    background: linear-gradient(160deg, var(--navy) 0%, #0f2448 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 52px 28px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .lp-hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(46,204,113,0.08);
+    pointer-events: none;
+  }
+  .lp-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(46,204,113,0.06);
+    pointer-events: none;
+  }
+  .lp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(46,204,113,0.15);
+    border: 1px solid rgba(46,204,113,0.35);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+  .lp-eyebrow::before { content: '✓'; font-size: 11px; }
+  .lp-hero h1 {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    letter-spacing: -0.3px;
+  }
+  .lp-hero h1 span { color: var(--green); }
+  .lp-hero p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.80);
+    line-height: 1.65;
+    max-width: 360px;
+    margin: 0 auto 36px;
+  }
+
+  .lp-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    margin: 0 20px;
+    padding: 22px 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    z-index: 2;
+    margin-top: -28px;
+  }
+  .lp-card-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .lp-service-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .lp-service-row:last-child { border-bottom: none; }
+  .lp-service-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #d1f2e1 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .lp-service-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .lp-service-text span {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .lp-body {
+    padding: 28px 20px 36px;
+    flex: 1;
+  }
+  .lp-amount-box {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .lp-amount-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+  }
+  .lp-amount-value {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .lp-amount-value sup {
+    font-size: 18px;
+    font-weight: 700;
+    vertical-align: super;
+    letter-spacing: 0;
+  }
+  .lp-amount-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 6px;
+  }
+
+  .lp-what-included {
+    margin-bottom: 24px;
+  }
+  .lp-section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.3px;
+    margin-bottom: 12px;
+  }
+  .lp-check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .lp-check-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green) 0%, #27ae60 100%);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .lp-check-item span {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.5;
+  }
+
+  .btn-pay {
+    width: 100%;
+    background: linear-gradient(135deg, var(--green) 0%, #27ae60 100%);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    font-size: 17px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    letter-spacing: 0.2px;
+    box-shadow: 0 4px 16px rgba(46,204,113,0.35);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .btn-pay:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 8px rgba(46,204,113,0.25);
+  }
+  .btn-pay-arrow { font-size: 20px; }
+
+  .lp-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .lp-trust::before { content: '🔒'; font-size: 13px; }
+
+  .lp-footer {
+    background: var(--navy);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .lp-footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+  .lp-footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ── PAYMENT SCREEN ── */
+  #paymentScreen {
+    display: none;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--light);
+  }
+  #paymentScreen.ps-open { display: flex; }
+
+  .ps-header {
+    background: var(--navy);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .ps-back-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    width: 32px;
+    flex-shrink: 0;
+  }
+  .ps-header-title {
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 700;
+    flex: 1;
+  }
+  .ps-header-lock {
+    color: rgba(255,255,255,0.6);
+    font-size: 18px;
+  }
+
+  .ps-body { padding: 20px; flex: 1; }
+
+  .ps-amount-summary {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .ps-amount-summary-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    font-weight: 600;
+  }
+  .ps-amount-summary-val {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .ps-amount-summary-badge {
+    background: rgba(46,204,113,0.2);
+    border: 1px solid rgba(46,204,113,0.4);
+    color: var(--green);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .ps-section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  /* Network cards */
+  .ps-network-grid { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .ps-network-card {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.18s, box-shadow 0.18s;
+    text-align: left;
+    width: 100%;
+    font-family: inherit;
+  }
+  .ps-network-card:active { transform: scale(0.98); }
+  .ps-network-card.ps-selected {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(26,58,107,0.10);
+    background: #f0f4fb;
+  }
+  .ps-network-logo-wrap {
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .ps-airtel-bg { background: #e0001a; }
+  .ps-tnm-bg    { background: #0072bb; }
+  .ps-network-logo-wrap img {
+    position: absolute;
+    inset: 0; width: 100%; height: 100%;
+    object-fit: contain;
+    display: none;
+    padding: 6px;
+  }
+  .ps-network-logo-placeholder {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .ps-network-info { flex: 1; }
+  .ps-network-name { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .ps-network-sub  { font-size: 12px; color: var(--muted); }
+  .ps-network-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    color: transparent;
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  .ps-selected .ps-network-check {
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--white);
+  }
+
+  /* Phone input */
+  .ps-phone-wrap {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+    transition: border-color 0.18s;
+  }
+  .ps-phone-wrap:focus-within { border-color: var(--navy); }
+  .ps-phone-flag {
+    padding: 0 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    border-right: 1.5px solid var(--border);
+    height: 52px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    background: #f9fafb;
+    gap: 6px;
+  }
+  .ps-phone-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    font-family: inherit;
+    background: transparent;
+  }
+  .ps-phone-hint { font-size: 12px; color: var(--muted); margin-bottom: 20px; padding-left: 2px; }
+
+  .ps-error-msg {
+    font-size: 13px;
+    color: var(--red);
+    background: #fff0f0;
+    border: 1px solid #fcc;
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    display: none;
+  }
+  .ps-error-msg.ps-show { display: block; }
+
+  /* Initiate button */
+  .ps-initiate-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--navy) 0%, #0f2448 100%);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 18px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 16px rgba(26,58,107,0.25);
+    transition: transform 0.15s;
+  }
+  .ps-initiate-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none !important;
+  }
+  .ps-initiate-btn:not(:disabled):active { transform: scale(0.98); }
+
+  /* STK push overlay */
+  #psStkOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,20,40,0.72);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 0 0 0;
+  }
+  #psStkOverlay.ps-stk-show { display: flex; }
+  .ps-stk-sheet {
+    background: var(--white);
+    border-radius: 24px 24px 0 0;
+    width: 100%;
+    max-width: 480px;
+    padding: 32px 24px 40px;
+    text-align: center;
+    animation: slideUp 0.32s cubic-bezier(.22,.68,0,1.2);
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+  .ps-stk-icon {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8f5e9, #d1f2e1);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 30px;
+    position: relative;
+  }
+  .ps-stk-pulse {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(46,204,113,0.35);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%   { transform: scale(0.9); opacity: 0.7; }
+    50%  { transform: scale(1.1); opacity: 0.2; }
+    100% { transform: scale(0.9); opacity: 0.7; }
+  }
+  .ps-stk-title  { font-size: 20px; font-weight: 800; color: var(--navy); margin-bottom: 8px; }
+  .ps-stk-sub    { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px; }
+  .ps-stk-phone  { font-weight: 700; color: var(--ink); }
+  .ps-stk-dots   { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; }
+  .ps-stk-dot    {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--navy); opacity: 0.2;
+    animation: dotBounce 1.4s ease-in-out infinite;
+  }
+  .ps-stk-dot:nth-child(2) { animation-delay: 0.2s; }
+  .ps-stk-dot:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dotBounce {
+    0%, 80%, 100% { transform: scale(1);   opacity: 0.2; }
+    40%            { transform: scale(1.4); opacity: 1; }
+  }
+  .ps-stk-cancel {
+    background: none; border: none;
+    color: var(--muted); font-size: 13px; font-weight: 600;
+    cursor: pointer; text-decoration: underline;
+    font-family: inherit;
+  }
+
+  /* ── SUCCESS SCREEN ── */
+  #successScreen {
+    display: none;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--light);
+  }
+  #successScreen.ss-open { display: flex; }
+
+  .ss-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .ss-tick-wrap {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--green) 0%, #27ae60 100%);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    box-shadow: 0 8px 32px rgba(46,204,113,0.35);
+    font-size: 40px;
+  }
+  .ss-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .ss-sub {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 320px;
+    margin: 0 auto 32px;
+  }
+  .ss-receipt-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    width: 100%;
+    max-width: 380px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    text-align: left;
+  }
+  .ss-receipt-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .ss-receipt-row:last-child { border-bottom: none; }
+  .ss-receipt-row span:first-child { color: var(--muted); font-weight: 500; }
+  .ss-receipt-row span:last-child  { color: var(--navy); font-weight: 700; }
+
+  .ss-wa-btn {
+    width: 100%;
+    max-width: 380px;
+    background: #25d366;
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    padding: 18px 24px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+    transition: transform 0.15s;
+  }
+  .ss-wa-btn:active { transform: scale(0.98); }
+  .ss-wa-icon { font-size: 22px; }
+  .ss-wa-hint {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    max-width: 320px;
+  }
+
+  .ss-footer {
+    background: var(--navy);
+    padding: 20px;
+    text-align: center;
+  }
+  .ss-footer p { font-size: 12px; color: rgba(255,255,255,0.45); }
+  .ss-footer strong { color: rgba(255,255,255,0.7); }
+
+  /* Spinner */
+  .spinner {
+    width: 18px; height: 18px;
+    border: 2.5px solid rgba(255,255,255,0.3);
+    border-top-color: var(--white);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 400px) {
+    .lp-hero h1 { font-size: 24px; }
+    .lp-amount-value { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     LANDING PAGE
+════════════════════════════════════════════ -->
+<div id="landingPage">
+
+  <header class="lp-header">
+    <!-- LOGO PLACEHOLDER: Replace src with your logo URL, or swap the whole element -->
+    <div class="lp-logo-placeholder">
+      <img id="headerLogo" src="assets/logo.png" alt="NyumbakuMalawi Logo"/>
+      <span id="headerLogoText">NyumbakuMalawi</span>
+    </div>
+  </header>
+
+  <section class="lp-hero">
+    <div class="lp-eyebrow">Service Request Confirmed</div>
+    <h1>Thank you for trusting us to find your <span>perfect property</span></h1>
+    <p>Our team has received your request and is ready to start searching. A dedicated agent will handle your search personally, so you don't have to spend hours scrolling listings.</p>
+  </section>
+
+  <!-- Floating card -->
+  <div class="lp-card">
+    <div class="lp-card-label">What happens next</div>
+    <div class="lp-service-row">
+      <div class="lp-service-icon">🔍</div>
+      <div class="lp-service-text">
+        <strong>We search on your behalf</strong>
+        <span>Our agents tap into networks & listings you can't always reach on your own.</span>
+      </div>
+    </div>
+    <div class="lp-service-row">
+      <div class="lp-service-icon">📞</div>
+      <div class="lp-service-text">
+        <strong>We screen &amp; shortlist</strong>
+        <span>We call landlords, verify availability, and shortlist the best matches for you.</span>
+      </div>
+    </div>
+    <div class="lp-service-row">
+      <div class="lp-service-icon">📍</div>
+      <div class="lp-service-text">
+        <strong>We share what we find</strong>
+        <span>You receive a curated list of properties — ready for viewing or decision.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="lp-body">
+
+    <!-- Amount -->
+    <div class="lp-amount-box">
+      <div class="lp-amount-label">Service Fee</div>
+      <div class="lp-amount-value"><sup>MK</sup>5,000</div>
+      <div class="lp-amount-sub">One-time · Non-refundable · Paid via Mobile Money</div>
+    </div>
+
+    <!-- What's included -->
+    <div class="lp-what-included">
+      <div class="lp-section-title">What's included in your search</div>
+      <div class="lp-check-item">
+        <div class="lp-check-dot">✓</div>
+        <span>Full property search conducted by a real person on your team</span>
+      </div>
+      <div class="lp-check-item">
+        <div class="lp-check-dot">✓</div>
+        <span>Listings matched to your budget, location &amp; property type</span>
+      </div>
+      <div class="lp-check-item">
+        <div class="lp-check-dot">✓</div>
+        <span>Landlord contacts screened and verified before sharing</span>
+      </div>
+      <div class="lp-check-item">
+        <div class="lp-check-dot">✓</div>
+        <span>Results delivered directly via WhatsApp within 24–48 hours</span>
+      </div>
+    </div>
+
+    <button class="btn-pay" onclick="openPaymentScreen()">
+      Continue to Payment
+      <span class="btn-pay-arrow">→</span>
+    </button>
+
+    <div class="lp-trust">Secured by Paychangu · Airtel Money &amp; TNM Mpamba</div>
+
+  </div>
+
+  <footer class="lp-footer">
+    <p><strong>NyumbakuMalawi</strong><br/>
+    Helping Malawians find homes since day one.<br/>
+    All payments processed securely via mobile money.</p>
+  </footer>
+
+</div><!-- /landingPage -->
+
+
+<!-- ════════════════════════════════════════════
+     PAYMENT SCREEN
+════════════════════════════════════════════ -->
+<div id="paymentScreen">
+
+  <div class="ps-header">
+    <button class="ps-back-btn" onclick="closePaymentScreen()">←</button>
+    <span class="ps-header-title">Secure Payment</span>
+    <span class="ps-header-lock">🔒</span>
+  </div>
+
+  <div class="ps-body">
+
+    <!-- Amount summary -->
+    <div class="ps-amount-summary">
+      <div>
+        <div class="ps-amount-summary-label">Amount to pay</div>
+        <div class="ps-amount-summary-val">MK 5,000</div>
+      </div>
+      <div class="ps-amount-summary-badge">Find Me a Property</div>
+    </div>
+
+    <!-- Network selector -->
+    <div class="ps-section-label">Choose Mobile Money Network</div>
+    <div class="ps-network-grid">
+
+      <!-- Airtel Money -->
+      <button id="psCardAirtel" class="ps-network-card" onclick="psSelectNetwork('airtel')" aria-pressed="false">
+        <div class="ps-network-logo-wrap ps-airtel-bg">
+          <img id="airtelLogo" src="assets/airtel-logo.png" alt="Airtel Money"/>
+          <div class="ps-network-logo-placeholder">AIRTEL<br/>MONEY</div>
+        </div>
+        <div class="ps-network-info">
+          <div class="ps-network-name">Airtel Money</div>
+          <div class="ps-network-sub">Numbers starting with 099, 098</div>
+        </div>
+        <div class="ps-network-check" id="psCheckAirtel">✓</div>
+      </button>
+
+      <!-- TNM Mpamba -->
+      <button id="psCardTnm" class="ps-network-card" onclick="psSelectNetwork('tnm')" aria-pressed="false">
+        <div class="ps-network-logo-wrap ps-tnm-bg">
+          <img id="tnmLogo" src="assets/tnm-logo.png" alt="TNM Mpamba"/>
+          <div class="ps-network-logo-placeholder">TNM<br/>MPAMBA</div>
+        </div>
+        <div class="ps-network-info">
+          <div class="ps-network-name">TNM Mpamba</div>
+          <div class="ps-network-sub">Numbers starting with 088, 089</div>
+        </div>
+        <div class="ps-network-check" id="psCheckTnm">✓</div>
+      </button>
+
+    </div>
+
+    <!-- Phone input -->
+    <div class="ps-section-label">Your Mobile Money Number</div>
+    <div class="ps-phone-wrap">
+      <div class="ps-phone-flag">🇲🇼 +265</div>
+      <input
+        id="psPhoneInput"
+        class="ps-phone-input"
+        type="tel"
+        inputmode="numeric"
+        placeholder="e.g. 099XXXXXXX"
+        maxlength="10"
+        oninput="psValidate()"
+      />
+    </div>
+    <div class="ps-phone-hint">Enter the number linked to your mobile money account.</div>
+
+    <!-- Error message -->
+    <div class="ps-error-msg" id="psErrorMsg"></div>
+
+    <!-- Initiate button -->
+    <button class="ps-initiate-btn" id="psInitiateBtn" onclick="psInitiatePayment()" disabled>
+      Initiate Payment
+    </button>
+
+  </div>
+
+  <!-- STK Push overlay -->
+  <div id="psStkOverlay">
+    <div class="ps-stk-sheet">
+      <div class="ps-stk-icon">
+        📲
+        <div class="ps-stk-pulse"></div>
+      </div>
+      <div class="ps-stk-title">Check Your Phone</div>
+      <div class="ps-stk-sub">
+        A payment prompt has been sent to<br/>
+        <span class="ps-stk-phone" id="psStkPhone"></span><br/>
+        Enter your PIN to complete the MK 5,000 payment.
+      </div>
+      <div class="ps-stk-dots">
+        <div class="ps-stk-dot"></div>
+        <div class="ps-stk-dot"></div>
+        <div class="ps-stk-dot"></div>
+      </div>
+      <button class="ps-stk-cancel" onclick="psCancelStk()">Cancel</button>
+    </div>
+  </div>
+
+</div><!-- /paymentScreen -->
+
+
+<!-- ════════════════════════════════════════════
+     SUCCESS SCREEN
+════════════════════════════════════════════ -->
+<div id="successScreen">
+
+  <div class="ps-header">
+    <span class="ps-header-title" style="text-align:center;flex:1;">Payment Complete</span>
+  </div>
+
+  <div class="ss-body">
+
+    <div class="ss-tick-wrap">✓</div>
+    <div class="ss-title">Payment Received!</div>
+    <div class="ss-sub">Thank you. Your service fee of <strong>MK 5,000</strong> has been received. Our team will begin your property search shortly.</div>
+
+    <!-- Receipt card -->
+    <div class="ss-receipt-card">
+      <div class="ss-receipt-row">
+        <span>Service</span>
+        <span>Find Me a Property</span>
+      </div>
+      <div class="ss-receipt-row">
+        <span>Amount Paid</span>
+        <span>MK 5,000</span>
+      </div>
+      <div class="ss-receipt-row">
+        <span>Network</span>
+        <span id="ssNetwork">—</span>
+      </div>
+      <div class="ss-receipt-row">
+        <span>Phone</span>
+        <span id="ssPhone">—</span>
+      </div>
+      <div class="ss-receipt-row">
+        <span>Status</span>
+        <span style="color:#27ae60;">✓ Confirmed</span>
+      </div>
+    </div>
+
+    <!-- WhatsApp proof button -->
+    <button class="ss-wa-btn" id="ssWaBtn" onclick="sendWhatsAppProof()">
+      <span class="ss-wa-icon">💬</span>
+      Send Payment Proof on WhatsApp
+    </button>
+    <div class="ss-wa-hint">Tap to open WhatsApp and send your payment confirmation to our team.</div>
+
+  </div>
+
+  <footer class="ss-footer">
+    <p><strong>NyumbakuMalawi</strong> · Your search begins now.<br/>
+    Expect to hear from us within 24–48 hours.</p>
+  </footer>
+
+</div><!-- /successScreen -->
+
+
+<script>
+// ════════════════════════════════════════════
+// CONFIGURATION — update these values
+// ════════════════════════════════════════════
+const SUPABASE_URL  = 'https://hdfgrvcaioddgicllglj.supabase.co';
+const SUPABASE_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhkZmdydmNhaW9kZGdpY2xsZ2xqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMTEyODQsImV4cCI6MjA5MjU4NzI4NH0.TKgr63xSrtVMuduQqiCfDxHioqlUJqz4u1yWXGn-dhE';
+const WHATSAPP_NUMBER = '265222206043';
+const SERVICE_NAME  = 'Find Me a Property';
+const SERVICE_AMOUNT = 5000;
+
+// Hide logo placeholder text once the image loads successfully
+['headerLogo','airtelLogo','tnmLogo'].forEach(id => {
+  const img = document.getElementById(id);
+  if (!img) return;
+  img.addEventListener('load', () => {
+    img.style.display = 'block';
+    const sib = img.nextElementSibling; // hide placeholder text/div
+    if (sib) sib.style.display = 'none';
+  });
+  img.addEventListener('error', () => { img.style.display = 'none'; });
+});
+
+// ════════════════════════════════════════════
+// SCREEN NAVIGATION
+// ════════════════════════════════════════════
+function openPaymentScreen() {
+  document.getElementById('landingPage').style.display    = 'none';
+  document.getElementById('paymentScreen').classList.add('ps-open');
+  window.scrollTo(0,0);
+}
+function closePaymentScreen() {
+  document.getElementById('paymentScreen').classList.remove('ps-open');
+  document.getElementById('landingPage').style.display = 'flex';
+  psReset();
+  window.scrollTo(0,0);
+}
+function showSuccessScreen(network, phone) {
+  document.getElementById('paymentScreen').classList.remove('ps-open');
+  const ss = document.getElementById('successScreen');
+  ss.classList.add('ss-open');
+  document.getElementById('ssNetwork').textContent = network === 'airtel' ? 'Airtel Money' : 'TNM Mpamba';
+  document.getElementById('ssPhone').textContent   = '+265' + phone.replace(/^0/, '');
+  window.scrollTo(0,0);
+}
+
+// ════════════════════════════════════════════
+// PAYMENT SCREEN STATE
+// ════════════════════════════════════════════
+let psNetwork   = null;
+let psPollTimer = null;
+let psTxRef     = null;
+
+function psReset() {
+  psNetwork = null;
+  psTxRef   = null;
+  if (psPollTimer) clearInterval(psPollTimer);
+  document.getElementById('psCardAirtel').classList.remove('ps-selected');
+  document.getElementById('psCardTnm').classList.remove('ps-selected');
+  document.getElementById('psCardAirtel').setAttribute('aria-pressed','false');
+  document.getElementById('psCardTnm').setAttribute('aria-pressed','false');
+  document.getElementById('psCheckAirtel').style.background = '';
+  document.getElementById('psCheckTnm').style.background    = '';
+  document.getElementById('psPhoneInput').value = '';
+  psHideError();
+  psSetInitiateBtn(false);
+  psStkOverlayHide();
+}
+
+function psSelectNetwork(net) {
+  psNetwork = net;
+  const cards   = { airtel: 'psCardAirtel', tnm: 'psCardTnm' };
+  const checks  = { airtel: 'psCheckAirtel', tnm: 'psCheckTnm' };
+  const others  = net === 'airtel' ? ['tnm'] : ['airtel'];
+  document.getElementById(cards[net]).classList.add('ps-selected');
+  document.getElementById(cards[net]).setAttribute('aria-pressed','true');
+  others.forEach(o => {
+    document.getElementById(cards[o]).classList.remove('ps-selected');
+    document.getElementById(cards[o]).setAttribute('aria-pressed','false');
+  });
+  psValidate();
+}
+
+function psValidate() {
+  const phone = document.getElementById('psPhoneInput').value.trim();
+  const validPhone = /^0(88|89|98|99)\d{7}$/.test(phone);
+  psSetInitiateBtn(psNetwork !== null && validPhone);
+  psHideError();
+}
+
+function psSetInitiateBtn(enabled) {
+  document.getElementById('psInitiateBtn').disabled = !enabled;
+}
+function psShowError(msg) {
+  const el = document.getElementById('psErrorMsg');
+  el.textContent = msg;
+  el.classList.add('ps-show');
+}
+function psHideError() {
+  document.getElementById('psErrorMsg').classList.remove('ps-show');
+}
+
+// ════════════════════════════════════════════
+// STK OVERLAY
+// ════════════════════════════════════════════
+function psStkOverlayShow(phone) {
+  document.getElementById('psStkPhone').textContent = '+265' + phone.replace(/^0/,'');
+  document.getElementById('psStkOverlay').classList.add('ps-stk-show');
+}
+function psStkOverlayHide() {
+  document.getElementById('psStkOverlay').classList.remove('ps-stk-show');
+}
+function psCancelStk() {
+  if (psPollTimer) clearInterval(psPollTimer);
+  psStkOverlayHide();
+  psSetInitiateBtn(true);
+}
+
+// ════════════════════════════════════════════
+// INITIATE PAYMENT
+// ════════════════════════════════════════════
+async function psInitiatePayment() {
+  psHideError();
+  const rawPhone = document.getElementById('psPhoneInput').value.trim();
+
+  // Format phone → 265XXXXXXXXX
+  const local    = rawPhone.startsWith('0') ? rawPhone.slice(1) : rawPhone;
+  const formatted = '265' + local;
+
+  psSetInitiateBtn(false);
+
+  let res, data;
+  try {
+    res = await fetch(SUPABASE_URL + '/functions/v1/initiate-find-payment', {
+      method:  'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+      },
+      body: JSON.stringify({
+        mobile:  formatted,
+        network: psNetwork,
+      }),
+    });
+    data = await res.json();
+  } catch(e) {
+    psShowError('Network error. Please check your connection and try again.');
+    psSetInitiateBtn(true);
+    return;
+  }
+
+  if (!res.ok || !data.tx_ref) {
+    psShowError(data.error || 'Could not initiate payment. Please try again.');
+    psSetInitiateBtn(true);
+    return;
+  }
+
+  psTxRef = data.tx_ref;
+  psStkOverlayShow(rawPhone);
+  psPollForSuccess(rawPhone);
+}
+
+// ════════════════════════════════════════════
+// POLL FOR PAYMENT CONFIRMATION
+// ════════════════════════════════════════════
+function psPollForSuccess(rawPhone) {
+  let attempts = 0;
+  const MAX = 45; // 45 × 4s = 3 minutes
+
+  psPollTimer = setInterval(async () => {
+    attempts++;
+
+    let res, data;
+    try {
+      res = await fetch(SUPABASE_URL + '/functions/v1/verify-find-payment', {
+        method:  'POST',
+        headers: {
+          'Content-Type':  'application/json',
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+        },
+        body: JSON.stringify({ tx_ref: psTxRef }),
+      });
+      data = await res.json();
+    } catch(_) {
+      return; // network blip — keep polling
+    }
+
+    if (data.paid === true) {
+      clearInterval(psPollTimer);
+      psStkOverlayHide();
+      showSuccessScreen(psNetwork, rawPhone);
+      return;
+    }
+
+    // Terminal failures — stop polling
+    const terminal = ['declined','insufficient_funds','cancelled','timed_out','exceeded_retry_limit','authentication_failed'];
+    if (terminal.includes(data.status)) {
+      clearInterval(psPollTimer);
+      psStkOverlayHide();
+      psShowError('Payment ' + data.status.replace(/_/g,' ') + '. Please try again.');
+      psSetInitiateBtn(true);
+      return;
+    }
+
+    if (attempts >= MAX) {
+      clearInterval(psPollTimer);
+      psStkOverlayHide();
+      psShowError('Payment timed out. If your money was deducted, please contact us on WhatsApp.');
+      psSetInitiateBtn(true);
+    }
+  }, 4000);
+}
+
+// ════════════════════════════════════════════
+// WHATSAPP PROOF BUTTON
+// ════════════════════════════════════════════
+function sendWhatsAppProof() {
+  const phone   = document.getElementById('ssPhone').textContent;
+  const network = document.getElementById('ssNetwork').textContent;
+  const msg = encodeURIComponent(
+    `Hello NyumbakuMalawi Team,\n\n` +
+    `I have successfully made the payment for the *Find Me a Property* service.\n\n` +
+    `📱 Phone: ${phone}\n` +
+    `🏦 Network: ${network}\n` +
+    `💰 Amount: MK 5,000\n` +
+    `📌 Service: Find Me a Property\n\n` +
+    `Please begin my property search. Thank you!`
+  );
+  window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + msg, '_blank');
+}
+</script>
+</body>
+</html>
